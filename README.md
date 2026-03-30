@@ -1,3 +1,7 @@
+![Mozilla Add-on Rating](https://img.shields.io/amo/rating/doomstop)
+![Mozilla Add-on Downloads](https://img.shields.io/amo/dw/doomstop)
+
+
 # Doomstop (Firefox)
 
 A lightweight Firefox extension that tracks your active doomscroll session and prompts when your configured limit is reached.
