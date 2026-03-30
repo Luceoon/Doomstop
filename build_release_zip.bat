@@ -10,15 +10,17 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$ErrorActionPreference = 'Stop';" ^
   "$root = Get-Location;" ^
   "$outZip = Join-Path $root '%OUTPUT_ZIP%';" ^
-  "$files = Get-ChildItem -Path $root -Recurse -File | Where-Object {" ^
-  "  $_.Name -ne 'README.md' -and" ^
-  "  $_.Extension -ne '.zip' -and" ^
-  "  $_.Name -ne '%SCRIPT_NAME%' -and" ^
-  "  $_.FullName -notmatch '\\\.[^\\]+'" ^
-  "};" ^
-  "if (-not $files) { throw 'No files found to include in archive.' }" ^
-  "$relativePaths = $files | ForEach-Object { Resolve-Path -Relative $_.FullName };" ^
-  "Compress-Archive -Path $relativePaths -DestinationPath $outZip -Force;" ^
+  "$includePaths = @(" ^
+  "  'manifest.json'," ^
+  "  'config.json'," ^
+  "  'icon.svg'," ^
+  "  'assets'," ^
+  "  'pages'," ^
+  "  'scripts'" ^
+  ");" ^
+  "$archiveInputs = $includePaths | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ };" ^
+  "if (-not $archiveInputs) { throw 'No extension files found to include in archive.' }" ^
+  "Compress-Archive -Path $archiveInputs -DestinationPath $outZip -Force;" ^
   "Write-Host ('Created: ' + $outZip)"
 
 if errorlevel 1 (

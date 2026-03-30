@@ -1,3 +1,8 @@
+/**
+ * Formats seconds as minutes and seconds.
+ * @param {number} seconds
+ * @returns {string}
+ */
 function formatDuration(seconds) {
   const total = Number.isFinite(Number(seconds)) ? Number(seconds) : 0;
   const mins = Math.floor(total / 60);
@@ -5,6 +10,10 @@ function formatDuration(seconds) {
   return `${mins}m ${secs}s`;
 }
 
+/**
+ * Loads and renders data shown on the break page.
+ * @returns {Promise<void>}
+ */
 async function loadBreakPageData() {
   try {
     const stats = await browser.runtime.sendMessage({ type: "GET_STATS" });

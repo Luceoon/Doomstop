@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doomstop</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <div class="header-row">
+          <h1 class="title-tight">Doomstop</h1>
+          <div class="switch-container">
+            <input type="checkbox" id="enabledToggle" class="switch-input">
+            <label for="enabledToggle" class="switch-label"></label>
+            <span class="switch-text">Enabled</span>
+          </div>
+        </div>
+        <p class="intro">Current doomscroll session</p>
+        <div class="time">
+          <strong id="timeValue">0m 0s</strong>
+          <span class="muted" id="statusText">Below limit</span>
+        </div>
+        <span class="limit" id="limitBadge">Prompt at 10 minutes</span>
+        <div class="settings">
+          <label for="limitSelect">Alarm after</label>
+          <select id="limitSelect">
+            <option value="60">1 minute</option>
+            <option value="180">3 minutes</option>
+            <option value="300">5 minutes</option>
+            <option value="480">8 minutes</option>
+            <option value="600">10 minutes</option>
+          </select>
+        </div>
+        <div class="settings">
+          <label for="messageSelect">Motivation message</label>
+          <select id="messageSelect">
+            <option value="Good Job">Good Job</option>
+            <option value="Good Boy">Good Boy</option>
+            <option value="Good Girl">Good Girl</option>
+          </select>
+        </div>
+        <div class="settings">
+          <label>Tracked services</label>
+          <div id="filterList" class="filter-list"></div>
+        </div>
+        <button id="resetBtn" type="button">Reset current session</button>
+      </div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,3 +1,8 @@
+/**
+ * Builds the break prompt overlay element.
+ * @param {string} message
+ * @returns {HTMLDivElement}
+ */
 function createPromptOverlay(message) {
   const overlay = document.createElement("div");
   overlay.id = "shorts-guard-overlay";
@@ -107,6 +112,11 @@ function createPromptOverlay(message) {
   return overlay;
 }
 
+/**
+ * Formats seconds as minutes and seconds.
+ * @param {number} seconds
+ * @returns {string}
+ */
 function formatDuration(seconds) {
   const total = Number.isFinite(Number(seconds)) ? Number(seconds) : 0;
   const mins = Math.floor(total / 60);
@@ -120,6 +130,11 @@ let usageOverlayPosition = "top";
 let usageOverlayLastMoveAt = 0;
 let usageOverlayMouseHandlerAttached = false;
 
+/**
+ * Applies the current corner position to the timer overlay.
+ * @param {HTMLDivElement} overlay
+ * @returns {void}
+ */
 function applyUsageOverlayPosition(overlay) {
   if (usageOverlayPosition === "bottom") {
     overlay.style.top = "";
@@ -130,6 +145,12 @@ function applyUsageOverlayPosition(overlay) {
   }
 }
 
+/**
+ * Checks whether the cursor is close to the timer overlay.
+ * @param {MouseEvent} event
+ * @param {HTMLElement} overlay
+ * @returns {boolean}
+ */
 function isCursorNearOverlay(event, overlay) {
   const rect = overlay.getBoundingClientRect();
   return (
@@ -140,6 +161,11 @@ function isCursorNearOverlay(event, overlay) {
   );
 }
 
+/**
+ * Moves the timer overlay away when the cursor is near.
+ * @param {MouseEvent} event
+ * @returns {void}
+ */
 function maybeMoveUsageOverlay(event) {
   const overlay = document.getElementById("shorts-guard-timer-overlay");
   if (!overlay) {
@@ -160,6 +186,10 @@ function maybeMoveUsageOverlay(event) {
   usageOverlayLastMoveAt = now;
 }
 
+/**
+ * Returns the timer overlay, creating it if needed.
+ * @returns {HTMLDivElement}
+ */
 function getOrCreateUsageOverlay() {
   let overlay = document.getElementById("shorts-guard-timer-overlay");
   if (overlay) {
@@ -205,6 +235,12 @@ function getOrCreateUsageOverlay() {
   return overlay;
 }
 
+/**
+ * Updates text values in the timer overlay.
+ * @param {number} sessionSeconds
+ * @param {number} dailySeconds
+ * @returns {void}
+ */
 function updateUsageOverlay(sessionSeconds, dailySeconds) {
   const overlay = getOrCreateUsageOverlay();
   const sessionLine = overlay.querySelector("#shorts-guard-session-line");
@@ -219,6 +255,10 @@ function updateUsageOverlay(sessionSeconds, dailySeconds) {
   }
 }
 
+/**
+ * Removes the timer overlay and related listeners.
+ * @returns {void}
+ */
 function hideUsageOverlay() {
   const overlay = document.getElementById("shorts-guard-timer-overlay");
   if (overlay) {
