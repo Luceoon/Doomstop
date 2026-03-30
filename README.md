@@ -30,3 +30,7 @@ Tracked patterns include:
 - The counter is session-based, not daily.
 - You can reset the current session manually from the popup.
 - Temporary add-ons are removed when Firefox is closed.
+
+## AI Disclaimer
+It's more "just-for-fun" project and the code is 99% written by claude ai agent.
+So project structure and code quality may not be the best.
