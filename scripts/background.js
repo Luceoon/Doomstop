@@ -32,47 +32,17 @@ function toSafeNumber(value, fallback = 0) {
   return fallback;
 }
 
-let trackedSitesConfig = null;
-
 /**
- * Loads tracked-site configuration from config.json.
- * @returns {Promise<Array>}
+ * Returns tracked sites from config state provider.
+ * @returns {Promise<Array<{id: string, displayName: string, hostname: string, paths: string[]}>>}
  */
-async function loadTrackedSitesConfig() {
-  if (trackedSitesConfig) {
-    return trackedSitesConfig;
-  }
-
-  try {
-    const response = await fetch(browser.runtime.getURL("config.json"));
-    const config = await response.json();
-    trackedSitesConfig = config.trackedSites || [];
-  } catch (error) {
-    console.error("Failed to load config.json:", error);
-    trackedSitesConfig = [];
-  }
-
-  return trackedSitesConfig;
-}
-
-/**
- * Normalizes and validates tracked-site entries.
- * @param {Array} rawSites
- * @returns {Array<{id: string, displayName: string, hostname: string, paths: string[]}>}
- */
-function normalizeTrackedSites(rawSites) {
-  if (!Array.isArray(rawSites)) {
+async function getTrackedSitesFromConfig() {
+  if (!globalThis.ConfigService || typeof globalThis.ConfigService.getTrackedSites !== "function") {
+    console.error("ConfigService is not available.");
     return [];
   }
 
-  return rawSites
-    .filter((site) => site && typeof site.id === "string" && typeof site.hostname === "string")
-    .map((site) => ({
-      id: site.id,
-      displayName: typeof site.displayName === "string" ? site.displayName : site.hostname,
-      hostname: site.hostname.toLowerCase(),
-      paths: Array.isArray(site.paths) ? site.paths.filter((p) => typeof p === "string").map((p) => p.toLowerCase()) : []
-    }));
+  return globalThis.ConfigService.getTrackedSites();
 }
 
 /**
@@ -140,7 +110,7 @@ async function isTrackedShortFormUrl(rawUrl, enabledFilterIds) {
   const hostname = parsed.hostname.replace(/^www\./, "").toLowerCase();
   const path = parsed.pathname.toLowerCase();
 
-  const sites = normalizeTrackedSites(await loadTrackedSitesConfig());
+  const sites = await getTrackedSitesFromConfig();
   const enabledSet = new Set(Array.isArray(enabledFilterIds) ? enabledFilterIds : []);
 
   for (const site of sites) {
@@ -168,7 +138,7 @@ async function isTrackedShortFormUrl(rawUrl, enabledFilterIds) {
  * @returns {Promise<Object>}
  */
 async function getState() {
-  const trackedSites = normalizeTrackedSites(await loadTrackedSitesConfig());
+  const trackedSites = await getTrackedSitesFromConfig();
 
   const current = await browser.storage.local.get([
     STORAGE_KEYS.sessionSeconds,
