@@ -1,5 +1,6 @@
-![Mozilla Add-on Rating](https://img.shields.io/amo/rating/doomstop)
+![Mozilla Add-on Version](https://img.shields.io/amo/v/doomstop)
 ![Mozilla Add-on Downloads](https://img.shields.io/amo/dw/doomstop)
+![Mozilla Add-on Rating](https://img.shields.io/amo/rating/doomstop)
 
 
 # Doomstop (Firefox)
