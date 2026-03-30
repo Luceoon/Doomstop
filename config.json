@@ -1,0 +1,59 @@
+{
+    "trackedSites": [
+        {
+            "id": "youtube-shorts",
+            "displayName": "YouTube Shorts",
+            "hostname": "youtube.com",
+            "paths": [
+                "/shorts/"
+            ]
+        },
+        {
+            "id": "tiktok",
+            "displayName": "TikTok",
+            "hostname": "tiktok.com",
+            "paths": [ "" ]
+        },
+        {
+            "id": "instagram-reels",
+            "displayName": "Instagram Reels",
+            "hostname": "instagram.com",
+            "paths": [
+                "/reel/",
+                "/reels/"
+            ]
+        },
+        {
+            "id": "facebook-reels",
+            "displayName": "Facebook Reels",
+            "hostname": "facebook.com",
+            "paths": [
+                "/reel/"
+            ]
+        },
+        {
+            "id": "reddit",
+            "displayName": "Reddit",
+            "hostname": "reddit.com",
+            "paths": [ "" ]
+        },
+        {
+            "id": "pinterest",
+            "displayName": "Pinterest",
+            "hostname": "pinterest.com",
+            "paths": [ "" ]
+        },
+        {
+            "id": "tumblr",
+            "displayName": "Tumblr",
+            "hostname": "tumblr.com",
+            "paths": [ "" ]
+        },
+        {
+            "id": "9gag",
+            "displayName": "9GAG",
+            "hostname": "9gag.com",
+            "paths": [ "" ]
+        }
+    ]
+}

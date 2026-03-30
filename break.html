@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Take a Break</title>
+    <style>
+      :root {
+        --bg-1: #fff5d6;
+        --bg-2: #ffe2b6;
+        --ink: #2a241d;
+        --card: #fffdf6;
+        --accent: #d9480f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.65), transparent 30%),
+          radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.6), transparent 35%),
+          linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      }
+
+      .card {
+        width: min(92vw, 720px);
+        background: var(--card);
+        border: 2px solid #efd8af;
+        border-radius: 18px;
+        box-shadow: 0 14px 40px rgba(126, 78, 20, 0.16);
+        padding: 22px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(28px, 6vw, 52px);
+        line-height: 1.05;
+        color: var(--accent);
+      }
+
+      p {
+        margin: 0 0 16px;
+        font-size: clamp(16px, 2.5vw, 22px);
+      }
+
+      img {
+        width: min(70vw, 360px);
+        max-height: 48vh;
+        border-radius: 14px;
+        border: 2px solid #f0d6b0;
+        object-fit: contain;
+        background: #fff;
+      }
+
+      .sub {
+        margin-top: 14px;
+        font-size: 14px;
+        color: #6d6154;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1 id="message">Good Job</h1>
+      <p>You chose a break. Great discipline.</p>
+      <img src="pat.gif" alt="Motivational pat gif">
+      <div class="sub" id="dailyTimeLine">Time wasted doomscrolling today: 0m 0s</div>
+      <div class="sub">Breathe, stretch, and come back with a fresh mind.</div>
+    </main>
+    <script src="break.js"></script>
+  </body>
+</html>
