@@ -215,7 +215,7 @@ function updateUsageOverlay(sessionSeconds, dailySeconds) {
   }
 
   if (dailyLine) {
-    dailyLine.textContent = `Heute gesamt: ${formatDuration(dailySeconds)}`;
+    dailyLine.textContent = `Today total: ${formatDuration(dailySeconds)}`;
   }
 }
 
